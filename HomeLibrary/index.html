@@ -35,43 +35,6 @@
             <input type="file" accept="image/*" capture="camera"/>
             <button>Rerun</button>
         </fieldset>
-        <fieldset class="reader-config-group">
-            <label>
-                <span>Barcode-Type</span>
-                <select name="decoder_readers">
-                    <option value="code_128">Code 128</option>
-                    <option value="code_39">Code 39</option>
-                    <option value="code_39_vin">Code 39 VIN</option>
-                    <option selected="selected" value="ean">EAN</option>
-                </select>
-            </label>
-            <label>
-                <span>Resolution (long side)</span>
-                <select name="input-stream_size">
-                    <option selected="selected" value="800">800px</option>
-                </select>
-            </label>
-            <label>
-                <span>Patch-Size</span>
-                <select name="locator_patch-size">
-                    <option selected="selected" value="large">large</option>
-                </select>
-            </label>
-            <label>
-                <span>Half-Sample</span>
-                <input type="checkbox" name="locator_half-sample" />
-            </label>
-            <label>
-                <span>Single Channel</span>
-                <input type="checkbox" name="input-stream_single-channel" />
-            </label>
-            <label>
-                <span>Workers</span>
-                <select name="numOfWorkers">
-                    <option selected="selected" value="1">1</option>
-                </select>
-            </label>
-        </fieldset>
     </div>
     <div id="result_strip">
         <ul class="thumbnails"></ul>
