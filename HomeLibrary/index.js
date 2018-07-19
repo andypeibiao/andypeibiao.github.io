@@ -92,6 +92,7 @@ $(function() {
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
         alert(code);
+        $("#cover").hide();
         // var url = "http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
         // $.ajax({
         //  url:url,
@@ -99,7 +100,6 @@ $(function() {
         //  processData: false, 
         //  type:'get',
         //  success:function(data){
-        //     $("#cover").hide();
         //    alert(data);
         //  },
         //  error:function(XMLHttpRequest, textStatus, errorThrown) {
