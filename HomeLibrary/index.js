@@ -5,17 +5,16 @@ $(function() {
         },
         attachListeners: function() {
             var self = this;
+
             $(".controls input[type=file]").on("change", function(e) {
+                $("#cover").show();
                 if (e.target.files && e.target.files.length) {
                     App.decode(URL.createObjectURL(e.target.files[0]));
                 }
             });
-            $(".controls button").on("click", function(e) {
-                var input = document.querySelector(".controls input[type=file]");
-                if (input.files && input.files.length) {
-                    App.decode(URL.createObjectURL(input.files[0]));
-                }
-            });
+            $("#scan-btn").on("click",function(){
+                $(".controls input[type=file]").click();
+            })
         },
         detachListeners: function() {
             $(".controls input[type=file]").off("change");
@@ -30,16 +29,26 @@ $(function() {
         inputMapper: {
             inputStream: {
                 size: function(value){
-                    return parseInt(800);
+                    return parseInt(value);
                 }
             },
             numOfWorkers: function(value) {
-                return parseInt(1);
+                return parseInt(value);
             },
             decoder: {
                 readers: function(value) {
+                    if (value === 'ean_extended') {
+                        return [{
+                            format: "ean_reader",
+                            config: {
+                                supplements: [
+                                    'ean_5_reader', 'ean_2_reader'
+                                ]
+                            }
+                        }];
+                    }
                     return [{
-                        format: "ean_reader",
+                        format: value + "_reader",
                         config: {}
                     }];
                 }
@@ -52,11 +61,11 @@ $(function() {
             },
             locator: {
                 patchSize: "large",
-                halfSample: false
+                halfSample: true
             },
             decoder: {
                 readers: [{
-                    format: "ean",
+                    format: "ean_reader",
                     config: {}
                 }]
             },
@@ -72,23 +81,32 @@ $(function() {
     如果失败，则在result中只有一个boxes
      */
     Quagga.onProcessed(function(result) {
-        var drawingCtx = Quagga.canvas.ctx.overlay,
-            drawingCanvas = Quagga.canvas.dom.overlay,
-            area;
         if (result) {
             if (result.codeResult && result.codeResult.code) {
             }else{
-                alert("该图像没有扫描到对应的数据，请重新扫描！");
+                alert("没有正常扫描，请重试！");
             }
-    }
+        }
     });
 
-    /*
-    如果检测到有条码
-    可以在此处进行下一步工作
-    */
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
-        alert(code);
+        var url = "http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
+        $.ajax({
+         url:url,
+         dataType:'jsonp',
+         processData: false, 
+         type:'get',
+         success:function(data){
+            $("#cover").hide();
+           alert(data);
+         },
+         error:function(XMLHttpRequest, textStatus, errorThrown) {
+            $("#cover").hide();
+            console.log(XMLHttpRequest);
+           alert(XMLHttpRequest.status);
+           alert(XMLHttpRequest.readyState);
+           alert(textStatus);
+         }});
     });
 });

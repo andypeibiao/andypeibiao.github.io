@@ -32,16 +32,12 @@
 <section id="container" class="container">
     <div class="controls">
         <fieldset class="input-group">
-            <input type="file" accept="image/*" capture="camera"/>
-            <button>Rerun</button>
+            <input type="file" accept="image/*" style="opacity: 0" capture="camera"/>
+            <div id="scan-btn" style="cursor: pointer; width: 32px;height: 32px;background-image: url('./images/scan.png');"></div>
         </fieldset>
     </div>
-    <div id="result_strip">
-        <ul class="thumbnails"></ul>
-    </div>
-    <div id="interactive" class="viewport"></div>
-    <div id="debug" class="detection"></div>
 </section>
+<div id="cover" style="position: absolute;width:1500px;height:800px;z-index:999;background-color:rgba(200,200,200,0.5);top:0;left:0;display: none;"></div>
 <footer>
     <p>
         &copy; Copyright by HomeLibrary
