@@ -91,22 +91,23 @@ $(function() {
 
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
-        var url = "http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
-        $.ajax({
-         url:url,
-         dataType:'jsonp',
-         processData: false, 
-         type:'get',
-         success:function(data){
-            $("#cover").hide();
-           alert(data);
-         },
-         error:function(XMLHttpRequest, textStatus, errorThrown) {
-            $("#cover").hide();
-            console.log(XMLHttpRequest);
-           alert(XMLHttpRequest.status);
-           alert(XMLHttpRequest.readyState);
-           alert(textStatus);
-         }});
+        alert(code);
+        // var url = "http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
+        // $.ajax({
+        //  url:url,
+        //  dataType:'jsonp',
+        //  processData: false, 
+        //  type:'get',
+        //  success:function(data){
+        //     $("#cover").hide();
+        //    alert(data);
+        //  },
+        //  error:function(XMLHttpRequest, textStatus, errorThrown) {
+        //     $("#cover").hide();
+        //     console.log(XMLHttpRequest);
+        //    alert(XMLHttpRequest.status);
+        //    alert(XMLHttpRequest.readyState);
+        //    alert(textStatus);
+        //  }});
     });
 });
