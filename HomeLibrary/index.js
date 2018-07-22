@@ -91,7 +91,7 @@ $(function() {
 
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
-        alert(code);
+        // alert(code);
         $("#cover").hide();
         // var url = "http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
         // $.ajax({
@@ -109,5 +109,16 @@ $(function() {
         //    alert(XMLHttpRequest.readyState);
         //    alert(textStatus);
         //  }});
+        // var url="http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
+        var url="http://api.douban.com/book/subject/isbn/"+code;
+        $.get({
+          "url": url,
+          "success": function(data) {
+            alert(data);
+          },
+          "error": function(d,msg) {
+            alert("Could not find user "+msg);
+          }
+        });
     });
 });
