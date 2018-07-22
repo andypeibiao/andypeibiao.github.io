@@ -91,34 +91,20 @@ $(function() {
 
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
-        // alert(code);
-        $("#cover").hide();
-        // var url = "http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
-        // $.ajax({
-        //  url:url,
-        //  dataType:'jsonp',
-        //  processData: false, 
-        //  type:'get',
-        //  success:function(data){
-        //    alert(data);
-        //  },
-        //  error:function(XMLHttpRequest, textStatus, errorThrown) {
-        //     $("#cover").hide();
-        //     console.log(XMLHttpRequest);
-        //    alert(XMLHttpRequest.status);
-        //    alert(XMLHttpRequest.readyState);
-        //    alert(textStatus);
-        //  }});
-        // var url="http://127.0.0.1:5000/interface/getBInfoByISBN/"+code+"?callback=tt";
-        var url="http://api.douban.com/book/subject/isbn/"+code;
-        $.get({
-          "url": url,
-          "success": function(data) {
-            alert(data);
-          },
-          "error": function(d,msg) {
-            alert("Could not find user "+msg);
-          }
-        });
+        var url="http://127.0.0.1:5000/interface/getBInfoByISBN/"+code;
+        $.ajax({
+             url: url,
+             type: "GET",
+             dataType: "jsonp", //指定服务器返回的数据类型
+             success: function (data) {
+                $("#cover").hide();
+                 var result = data.result;
+                 alert(result);
+             },
+             error:function(error){
+                $("#cover").hide();
+                console.log("获取图书相关信息失败！失败原因："+error);
+             }
+         });
     });
 });
