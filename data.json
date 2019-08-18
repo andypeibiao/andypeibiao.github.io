@@ -1,20 +1,20 @@
 [{
   "id": 1,
-  "iconPath": '/images/location.png',
+  "iconPath": "/images/location.png",
   "latitude": 39.9,
   "longitude": 116.7,
   "width": 50,
   "height": 50
 },{
   "id": 2,
-  "iconPath": '/images/location.png',
+  "iconPath": "/images/location.png",
   "latitude": 39.8,
   "longitude": 116.7,
   "width": 50,
   "height": 50
 },{
   "id": 3,
-  "iconPath": '/images/location.png',
+  "iconPath": "/images/location.png",
   "latitude": 39.7,
   "longitude": 116.7,
   "width": 50,
