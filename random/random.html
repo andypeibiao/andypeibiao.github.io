@@ -3,9 +3,10 @@
     <head>
         <script src="../wife.js"></script>
         <script>
-            console.log(wife)
+            //console.log(wife)
+            let max = wife&&wife.length?wife.length:2;
             function getRandom(){
-                var random = Math.round(Math.random()*10+1)
+                var random = Math.floor(Math.random()*max)+1
                 return wife[random-1];
             }
             document.write(getRandom())
